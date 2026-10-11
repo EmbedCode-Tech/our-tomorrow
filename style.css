@@ -1,35 +1,40 @@
 /* =========================================================
    OUR TOMORROW
-   Premium Love Story Website
-   COMPLETE UPDATED CSS
+   PREMIUM LOVE STORY WEBSITE
+   COMPLETE STYLE.CSS
    ========================================================= */
 
 
 /* =========================================================
-   01. ROOT VARIABLES
+   01. ROOT
    ========================================================= */
 
 :root {
-    --bg: #09090d;
-    --bg-soft: #0d0d13;
-    --panel: #111118;
-    --panel-light: #14141b;
+    --bg: #08090d;
+    --bg-2: #0d0e13;
+    --bg-3: #12131a;
 
-    --text: #f4f0ea;
-    --text-soft: #d0ccca;
-    --muted: #aaa4a0;
-    --muted-dark: #77716e;
+    --white: #f7f3ed;
+    --soft-white: #ded9d2;
+    --gray: #9a9691;
+    --dark-gray: #68645f;
 
-    --gold: #d6b47a;
-    --gold-light: #e5c994;
-    --rose: #c98791;
+    --gold: #d8b778;
+    --gold-light: #ebd09a;
 
-    --line: rgba(255, 255, 255, 0.11);
+    --rose: #d08b98;
 
-    --container: 1250px;
+    --border: rgba(255, 255, 255, 0.10);
 
-    --heading-font: "Playfair Display", Georgia, serif;
-    --body-font: "DM Sans", Arial, sans-serif;
+    --heading:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    --body:
+        "DM Sans",
+        Arial,
+        sans-serif;
 }
 
 
@@ -49,12 +54,10 @@ html {
 
 body {
     margin: 0;
-    padding: 0;
-
     background: var(--bg);
-    color: var(--text);
+    color: var(--white);
 
-    font-family: var(--body-font);
+    font-family: var(--body);
 
     overflow-x: hidden;
 }
@@ -64,44 +67,49 @@ body.no-scroll {
 }
 
 img {
+    display: block;
     max-width: 100%;
-}
-
-button,
-input,
-textarea,
-select {
-    font-family: inherit;
 }
 
 a {
     color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
 }
 
 ::selection {
     background: var(--gold);
-    color: #09090d;
+    color: #111;
 }
 
 
 /* =========================================================
-   03. GLOBAL EFFECTS
+   03. GLOBAL GRAIN
    ========================================================= */
 
 .grain {
     position: fixed;
     inset: 0;
 
-    z-index: 100;
+    z-index: 999;
 
     pointer-events: none;
 
-    opacity: 0.045;
+    opacity: 0.035;
 
-    background-image: url(
-        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
-    );
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
+
+
+/* =========================================================
+   04. CURSOR GLOW
+   ========================================================= */
 
 .cursor-glow {
     position: fixed;
@@ -109,39 +117,39 @@ a {
     width: 320px;
     height: 320px;
 
+    transform: translate(-50%, -50%);
+
     border-radius: 50%;
 
     pointer-events: none;
 
     z-index: 0;
 
-    transform: translate(-50%, -50%);
-
     background:
         radial-gradient(
             circle,
-            rgba(214, 180, 122, 0.07),
-            transparent 65%
+            rgba(216, 183, 120, 0.07),
+            transparent 68%
         );
 }
 
 
 /* =========================================================
-   04. LOADER
+   05. LOADER
    ========================================================= */
 
 #loader {
     position: fixed;
     inset: 0;
 
-    z-index: 1000;
+    z-index: 2000;
 
     display: grid;
     place-content: center;
 
     text-align: center;
 
-    background: #09090d;
+    background: #08090d;
 
     transition:
         opacity 0.8s ease,
@@ -154,13 +162,11 @@ a {
 }
 
 .loader-mark {
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
-    font-size: 38px;
+    font-size: 40px;
 
-    font-weight: 500;
-
-    letter-spacing: 5px;
+    letter-spacing: 6px;
 }
 
 .loader-mark span {
@@ -168,20 +174,20 @@ a {
 }
 
 .loader-mark + p {
-    margin-top: 12px;
+    margin-top: 14px;
 
     color: #777;
 
-    font-size: 12px;
+    font-size: 10px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     text-transform: uppercase;
 }
 
 
 /* =========================================================
-   05. NAVIGATION
+   06. NAVIGATION
    ========================================================= */
 
 .nav {
@@ -191,9 +197,9 @@ a {
     left: 0;
     right: 0;
 
-    z-index: 90;
+    z-index: 100;
 
-    height: 80px;
+    height: 82px;
 
     display: flex;
 
@@ -205,25 +211,21 @@ a {
 
     background:
         linear-gradient(
-            #09090ddd,
-            transparent
+            rgba(8, 9, 13, 0.92),
+            rgba(8, 9, 13, 0.15)
         );
 
     backdrop-filter: blur(8px);
 }
 
 .logo {
-    color: #ffffff;
+    font-family: var(--heading);
 
-    text-decoration: none;
+    font-size: 21px;
 
-    font-family: var(--heading-font);
+    letter-spacing: 4px;
 
-    font-size: 20px;
-
-    font-weight: 500;
-
-    letter-spacing: 3px;
+    color: #fff;
 }
 
 .logo span {
@@ -239,17 +241,15 @@ a {
 }
 
 .nav nav a {
-    color: #c8c4c0;
+    color: #c8c4bf;
 
-    text-decoration: none;
+    font-size: 10px;
 
-    font-size: 11px;
-
-    letter-spacing: 1.5px;
+    letter-spacing: 1.8px;
 
     text-transform: uppercase;
 
-    transition: color 0.3s ease;
+    transition: 0.3s ease;
 }
 
 .nav nav a:hover {
@@ -263,8 +263,6 @@ a {
 
     gap: 5px;
 
-    padding: 5px;
-
     background: transparent;
 
     border: 0;
@@ -273,23 +271,21 @@ a {
 }
 
 .menu-btn span {
-    display: block;
-
-    width: 23px;
+    width: 24px;
     height: 1px;
 
-    background: #ddd;
+    background: #fff;
 }
 
 
 /* =========================================================
-   06. TYPOGRAPHY
+   07. GLOBAL TYPOGRAPHY
    ========================================================= */
 
 h1,
 h2,
 h3 {
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-weight: 400;
 }
@@ -313,19 +309,20 @@ h2 em {
 
     font-size: 10px;
 
-    letter-spacing: 3px;
+    letter-spacing: 3.5px;
 
     text-transform: uppercase;
 }
 
 
 /* =========================================================
-   07. HERO
+   08. HERO
    ========================================================= */
 
 .hero {
     position: relative;
 
+    width: 100%;
     min-height: 700px;
     height: 100vh;
 
@@ -346,23 +343,24 @@ h2 em {
     background:
         linear-gradient(
             90deg,
-            rgba(5, 5, 8, 0.94),
-            rgba(5, 5, 8, 0.48),
-            rgba(5, 5, 8, 0.80)
+            rgba(5, 5, 8, 0.95),
+            rgba(5, 5, 8, 0.52),
+            rgba(5, 5, 8, 0.82)
         ),
         url("images/hero.jpg")
         center / cover
         no-repeat;
 
-    filter: saturate(0.72);
-
     transform: scale(1.04);
 
-    animation:
-        slowZoom 14s ease-out forwards;
+    animation: slowZoom 14s ease-out forwards;
 }
 
 @keyframes slowZoom {
+
+    from {
+        transform: scale(1.04);
+    }
 
     to {
         transform: scale(1);
@@ -371,7 +369,6 @@ h2 em {
 
 .hero-overlay {
     position: absolute;
-
     inset: 0;
 
     background:
@@ -391,11 +388,12 @@ h2 em {
 }
 
 .hero h1 {
-    font-size: clamp(
-        72px,
-        11vw,
-        170px
-    );
+    font-size:
+        clamp(
+            70px,
+            11vw,
+            165px
+        );
 
     letter-spacing: -5px;
 }
@@ -405,9 +403,9 @@ h2 em {
 
     margin: 35px 0;
 
-    color: var(--text-soft);
+    color: var(--soft-white);
 
-    font-size: 17px;
+    font-size: 16px;
 
     line-height: 1.8;
 }
@@ -417,17 +415,15 @@ h2 em {
 
     align-items: center;
 
-    gap: 30px;
+    gap: 28px;
 
     padding: 16px 22px;
 
-    color: #111;
-
     background: var(--gold);
 
-    text-decoration: none;
+    color: #111;
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 700;
 
@@ -442,12 +438,12 @@ h2 em {
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 35px
-        rgba(214, 180, 122, 0.15);
+        0 15px 40px
+        rgba(216, 183, 120, 0.18);
 }
 
 .gold-btn span {
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .scroll-hint {
@@ -478,13 +474,15 @@ h2 em {
 
 
 /* =========================================================
-   08. COMMON SECTION
+   09. COMMON SECTION
    ========================================================= */
 
 .section {
     position: relative;
 
-    padding: 150px 10vw;
+    width: 100%;
+
+    padding: 150px 8vw;
 
     overflow: hidden;
 }
@@ -492,10 +490,10 @@ h2 em {
 .section-number {
     position: absolute;
 
-    top: 50px;
+    top: 55px;
     left: 5vw;
 
-    color: #5f5a58;
+    color: #56524f;
 
     font-size: 10px;
 
@@ -517,32 +515,39 @@ h2 em {
 }
 
 .section h2 {
-    font-size: clamp(
-        55px,
-        7vw,
-        105px
-    );
+    font-size:
+        clamp(
+            55px,
+            7vw,
+            105px
+        );
 
     letter-spacing: -3px;
 }
 
 
 /* =========================================================
-   09. QUOTE
+   10. QUOTE
    ========================================================= */
 
 .quote {
-    max-width: 500px;
+    max-width: 520px;
 
-    padding: 25px 0 25px 40px;
+    padding:
+        25px
+        0
+        25px
+        40px;
 
-    border-left: 1px solid var(--gold);
+    border-left:
+        1px solid
+        var(--gold);
 }
 
 .quote-mark {
     color: var(--gold);
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 80px;
 
@@ -554,7 +559,7 @@ h2 em {
 
     color: #e4dfda;
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 27px;
 
@@ -567,35 +572,46 @@ h2 em {
 
 
 /* =========================================================
-   10. CINEMA / MAIN LOVE PHOTO
+   11. CINEMA / MAIN PHOTO SECTION
    =========================================================
 
-   IMPORTANT:
+   THIS IS THE IMPORTANT PART.
 
-   This version does NOT crop your image.
+   Your collage is a portrait image.
 
-   Your collage is portrait-oriented, so:
-   - image stays complete
-   - image is centered
-   - image keeps original aspect ratio
-   - image is displayed above the text
+   We therefore:
+   - do NOT use a fixed image height
+   - do NOT use object-fit: cover
+   - do NOT crop the image
+   - make image width 100%
+   - keep height AUTO
+   - center the image
    ========================================================= */
 
 .cinema {
     width: 100%;
 
-    padding: 130px 6vw;
+    padding:
+        120px
+        5vw;
 
-    background: var(--bg-soft);
+    background:
+        linear-gradient(
+            180deg,
+            #0a0b0f,
+            #0d0e13
+        );
 }
 
 
-/* Main photo + content card */
+/* Main card */
 
 .cinema-card {
+    position: relative;
+
     width: 100%;
 
-    max-width: 1150px;
+    max-width: 1250px;
 
     margin: 0 auto;
 
@@ -603,33 +619,38 @@ h2 em {
 
     flex-direction: column;
 
-    background:
-        linear-gradient(
-            145deg,
-            #13131a,
-            #0c0c11
-        );
-
-    border: 1px solid var(--line);
+    padding: 0;
 
     overflow: hidden;
 
-    border-radius: 3px;
+    background: #0c0d12;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.10);
 
     box-shadow:
-        0 30px 80px
-        rgba(0, 0, 0, 0.35);
+        0 35px 100px
+        rgba(0, 0, 0, 0.38);
 }
 
 
 /* =========================================================
-   11. FULL PHOTO AREA
+   12. PHOTO CONTAINER
    ========================================================= */
 
 .photo-placeholder {
     position: relative;
 
     width: 100%;
+
+    height: auto;
+
+    min-height: 0;
+
+    margin: 0;
+
+    padding: 0;
 
     display: flex;
 
@@ -639,27 +660,13 @@ h2 em {
 
     overflow: hidden;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #17171f,
-            #07070a 80%
-        );
-
-    padding: 0;
+    background: #08090c;
 }
 
 
-/*
-   YOUR IMAGE
-
-   This is the most important part.
-
-   width: 100%
-   height: auto
-
-   means the ENTIRE image is visible.
-*/
+/* =========================================================
+   13. ACTUAL PHOTO
+   ========================================================= */
 
 .photo-placeholder img {
     position: relative;
@@ -672,7 +679,11 @@ h2 em {
 
     max-width: 100%;
 
+    min-width: 0;
+
     margin: 0 auto;
+
+    padding: 0;
 
     object-fit: contain;
 
@@ -680,77 +691,83 @@ h2 em {
 
     transform: none;
 
-    filter:
-        saturate(0.98)
-        contrast(1.02);
+    border: 0;
 
-    transition:
-        transform 0.8s ease,
-        filter 0.8s ease;
+    outline: 0;
+
+    filter:
+        saturate(1)
+        contrast(1.01);
 
     z-index: 1;
-}
 
-
-/* Subtle cinematic overlay */
-
-.photo-placeholder::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.02),
-            rgba(0, 0, 0, 0.12)
-        );
-}
-
-
-/* Gentle hover effect */
-
-.cinema-card:hover
-.photo-placeholder img {
-    transform: scale(1.008);
-
-    filter:
-        saturate(1.02)
-        contrast(1.03);
+    transition:
+        filter 0.5s ease;
 }
 
 
 /* =========================================================
-   12. CINEMA TEXT
+   14. REMOVE OLD PLACEHOLDER
+   ========================================================= */
+
+.photo-placeholder > div {
+    display: none !important;
+}
+
+
+/* =========================================================
+   15. REMOVE PHOTO OVERLAYS
+   ========================================================= */
+
+.photo-placeholder::before,
+.photo-placeholder::after {
+    content: none !important;
+
+    display: none !important;
+}
+
+
+/* =========================================================
+   16. PHOTO HOVER
+   ========================================================= */
+
+.cinema-card:hover
+.photo-placeholder img {
+    transform: none;
+
+    filter:
+        saturate(1.03)
+        contrast(1.02);
+}
+
+
+/* =========================================================
+   17. CINEMA TEXT
    ========================================================= */
 
 .cinema-copy {
     position: relative;
 
-    z-index: 3;
-
     width: 100%;
 
-    padding: 80px 70px 90px;
+    min-height: 0;
+
+    padding:
+        80px
+        60px
+        90px;
 
     text-align: center;
 
     background:
         linear-gradient(
             180deg,
-            #111118,
-            #0c0c11
+            #12131a,
+            #0c0d12
         );
+
+    z-index: 3;
 }
-
-
-/* Gold small heading */
 
 .cinema-copy .eyebrow {
     margin-bottom: 25px;
@@ -760,25 +777,21 @@ h2 em {
     font-size: 10px;
 
     letter-spacing: 4px;
-
-    text-transform: uppercase;
 }
-
-
-/* Main heading */
 
 .cinema-copy h2 {
     margin: 0;
 
-    color: var(--text);
+    color: var(--white);
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
-    font-size: clamp(
-        60px,
-        7vw,
-        105px
-    );
+    font-size:
+        clamp(
+            60px,
+            7vw,
+            105px
+        );
 
     font-weight: 400;
 
@@ -787,22 +800,19 @@ h2 em {
     letter-spacing: -4px;
 }
 
-
-/* Gold italic heading */
-
 .cinema-copy h2 em {
     color: var(--gold);
 
     font-style: italic;
 }
 
-
-/* Description */
-
 .cinema-copy > p:last-child {
     max-width: 650px;
 
-    margin: 35px auto 0;
+    margin:
+        35px
+        auto
+        0;
 
     color: #999;
 
@@ -813,27 +823,31 @@ h2 em {
 
 
 /* =========================================================
-   13. MOMENTS / CARDS
+   18. MOMENTS
    ========================================================= */
 
 .center-heading {
     max-width: 800px;
 
-    margin: 0 auto 75px;
+    margin:
+        0
+        auto
+        75px;
 
     text-align: center;
 }
 
 .center-heading h2 {
-    font-size: clamp(
-        48px,
-        6vw,
-        85px
-    );
+    font-size:
+        clamp(
+            48px,
+            6vw,
+            85px
+        );
 }
 
 .cards {
-    max-width: var(--container);
+    max-width: 1200px;
 
     margin: auto;
 
@@ -844,31 +858,28 @@ h2 em {
 
     gap: 1px;
 
-    background: var(--line);
+    background: var(--border);
 }
 
 .moment {
-    position: relative;
-
     min-height: 260px;
 
     padding: 40px;
 
-    background: #0d0d12;
+    background: #0d0e13;
 
     transition:
-        background 0.4s ease,
-        transform 0.4s ease;
+        0.4s ease;
 }
 
 .moment:hover {
-    background: #15151c;
+    background: #15161d;
 
     transform: translateY(-5px);
 }
 
 .moment b {
-    color: #5c5957;
+    color: #5d5955;
 
     font-size: 10px;
 
@@ -878,17 +889,16 @@ h2 em {
 .moment span {
     display: block;
 
-    margin: 25px 0 15px;
+    margin:
+        25px
+        0
+        15px;
 
     font-size: 30px;
 }
 
 .moment h3 {
-    font-family: var(--heading-font);
-
     font-size: 25px;
-
-    font-weight: 400;
 }
 
 .moment p {
@@ -903,11 +913,11 @@ h2 em {
 
 
 /* =========================================================
-   14. CARE SECTION
+   19. CARE SECTION
    ========================================================= */
 
 .care {
-    background: #111117;
+    background: #111219;
 }
 
 .care-grid {
@@ -931,10 +941,14 @@ h2 em {
     margin-top: 30px;
 
     color: #777;
+
+    line-height: 1.8;
 }
 
 .care-list {
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 .care-item {
@@ -946,7 +960,9 @@ h2 em {
 
     padding: 28px 0;
 
-    border-bottom: 1px solid var(--line);
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
 .care-item > span {
@@ -956,11 +972,7 @@ h2 em {
 }
 
 .care-item h3 {
-    font-family: var(--heading-font);
-
     font-size: 26px;
-
-    font-weight: 400;
 }
 
 .care-item p {
@@ -975,15 +987,15 @@ h2 em {
 
 
 /* =========================================================
-   15. FAMILY
+   20. FAMILY
    ========================================================= */
 
 .family {
     background:
         linear-gradient(
             135deg,
-            #100e11,
-            #0a0a0d
+            #100f13,
+            #090a0e
         );
 }
 
@@ -996,17 +1008,20 @@ h2 em {
 }
 
 .family-hero h2 {
-    font-size: clamp(
-        60px,
-        8vw,
-        110px
-    );
+    font-size:
+        clamp(
+            60px,
+            8vw,
+            110px
+        );
 }
 
 .family-hero > p:last-child {
     max-width: 600px;
 
-    margin: 30px auto;
+    margin:
+        30px
+        auto;
 
     color: #999;
 
@@ -1016,7 +1031,10 @@ h2 em {
 .family-cards {
     max-width: 1100px;
 
-    margin: 80px auto 0;
+    margin:
+        80px
+        auto
+        0;
 
     display: grid;
 
@@ -1029,15 +1047,18 @@ h2 em {
 .family-card {
     min-height: 300px;
 
-    padding: 45px 35px;
+    padding:
+        45px
+        35px;
 
     background: #ffffff03;
 
-    border: 1px solid var(--line);
+    border:
+        1px solid
+        var(--border);
 
     transition:
-        transform 0.35s ease,
-        background 0.35s ease;
+        0.35s ease;
 }
 
 .family-card:hover {
@@ -1055,7 +1076,10 @@ h2 em {
 .family-card strong {
     display: block;
 
-    margin: 25px 0 8px;
+    margin:
+        25px
+        0
+        8px;
 
     color: #777;
 
@@ -1065,11 +1089,7 @@ h2 em {
 }
 
 .family-card h3 {
-    font-family: var(--heading-font);
-
     font-size: 33px;
-
-    font-weight: 400;
 }
 
 .family-card p {
@@ -1084,7 +1104,7 @@ h2 em {
 
 
 /* =========================================================
-   16. TIMELINE
+   21. TIMELINE
    ========================================================= */
 
 .timeline-wrap {
@@ -1104,7 +1124,7 @@ h2 em {
 
     width: 1px;
 
-    background: var(--line);
+    background: var(--border);
 }
 
 .time-row {
@@ -1148,13 +1168,11 @@ h2 em {
 }
 
 .time-row h3 {
-    margin: 10px 0;
-
-    font-family: var(--heading-font);
+    margin:
+        10px
+        0;
 
     font-size: 38px;
-
-    font-weight: 400;
 }
 
 .time-row p {
@@ -1169,11 +1187,11 @@ h2 em {
 
 
 /* =========================================================
-   17. REASONS
+   22. REASONS
    ========================================================= */
 
 .reasons {
-    background: #111117;
+    background: #111219;
 }
 
 .reasons-copy .big {
@@ -1181,7 +1199,7 @@ h2 em {
 
     color: #eee;
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 30px;
 
@@ -1198,7 +1216,7 @@ h2 em {
 
 
 /* =========================================================
-   18. GALLERY
+   23. GALLERY
    ========================================================= */
 
 .gallery-grid {
@@ -1229,11 +1247,13 @@ h2 em {
     background:
         linear-gradient(
             135deg,
-            #191820,
-            #0c0c11
+            #191a21,
+            #0b0c10
         );
 
-    border: 1px solid var(--line);
+    border:
+        1px solid
+        var(--border);
 }
 
 .gallery-photo::after {
@@ -1243,7 +1263,9 @@ h2 em {
 
     inset: 15px;
 
-    border: 1px solid #ffffff08;
+    border:
+        1px solid
+        rgba(255,255,255,0.03);
 
     pointer-events: none;
 }
@@ -1276,7 +1298,7 @@ h2 em {
 
 
 /* =========================================================
-   19. PROMISE
+   24. PROMISE
    ========================================================= */
 
 .promise {
@@ -1293,7 +1315,6 @@ h2 em {
 
 .promise-bg {
     position: absolute;
-
     inset: 0;
 
     background:
@@ -1311,17 +1332,21 @@ h2 em {
 }
 
 .promise-content h2 {
-    font-size: clamp(
-        55px,
-        7vw,
-        105px
-    );
+    font-size:
+        clamp(
+            55px,
+            7vw,
+            105px
+        );
 }
 
 .letter {
     max-width: 650px;
 
-    margin: 55px auto 0;
+    margin:
+        55px
+        auto
+        0;
 
     color: #9c9895;
 
@@ -1339,7 +1364,7 @@ h2 em {
 .signature {
     color: #e5dfd9;
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 23px !important;
 }
@@ -1356,7 +1381,7 @@ h2 em {
 
 
 /* =========================================================
-   20. FINAL SECTION
+   25. FINAL
    ========================================================= */
 
 .final {
@@ -1368,7 +1393,9 @@ h2 em {
 
     text-align: center;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 .final-inner {
@@ -1386,15 +1413,18 @@ h2 em {
 }
 
 .final h2 {
-    font-size: clamp(
-        65px,
-        8vw,
-        115px
-    );
+    font-size:
+        clamp(
+            65px,
+            8vw,
+            115px
+        );
 }
 
 .final-inner > p:not(.eyebrow) {
-    margin: 30px 0;
+    margin:
+        30px
+        0;
 
     color: #888;
 
@@ -1402,13 +1432,17 @@ h2 em {
 }
 
 .surprise-btn {
-    padding: 15px 23px;
+    padding:
+        15px
+        23px;
 
     color: var(--gold);
 
     background: transparent;
 
-    border: 1px solid #6c5b46;
+    border:
+        1px solid
+        #6c5b46;
 
     cursor: pointer;
 
@@ -1433,7 +1467,7 @@ h2 em {
 
 
 /* =========================================================
-   21. MODAL
+   26. MODAL
    ========================================================= */
 
 .modal {
@@ -1441,7 +1475,7 @@ h2 em {
 
     inset: 0;
 
-    z-index: 200;
+    z-index: 500;
 
     display: grid;
 
@@ -1449,7 +1483,8 @@ h2 em {
 
     padding: 20px;
 
-    background: #050507dd;
+    background:
+        rgba(5, 5, 7, 0.87);
 
     backdrop-filter: blur(15px);
 
@@ -1475,11 +1510,15 @@ h2 em {
 
     max-width: 650px;
 
-    padding: 80px 50px;
+    padding:
+        80px
+        50px;
 
-    background: #121219;
+    background: #12131a;
 
-    border: 1px solid #ffffff15;
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
 
     text-align: center;
 
@@ -1498,11 +1537,13 @@ h2 em {
 }
 
 .modal p:not(.eyebrow) {
-    margin: 35px 0;
+    margin:
+        35px
+        0;
 
     color: #bbb;
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 22px;
 
@@ -1512,7 +1553,7 @@ h2 em {
 .modal strong {
     color: var(--gold);
 
-    font-family: var(--heading-font);
+    font-family: var(--heading);
 
     font-size: 20px;
 }
@@ -1525,7 +1566,7 @@ h2 em {
 
     color: #888;
 
-    background: none;
+    background: transparent;
 
     border: 0;
 
@@ -1536,7 +1577,7 @@ h2 em {
 
 
 /* =========================================================
-   22. FOOTER
+   27. FOOTER
    ========================================================= */
 
 footer {
@@ -1546,13 +1587,17 @@ footer {
 
     justify-content: space-between;
 
-    padding: 50px 10vw;
+    padding:
+        50px
+        10vw;
 
     color: #666;
 
     font-size: 11px;
 
-    border-top: 1px solid var(--line);
+    border-top:
+        1px solid
+        var(--border);
 }
 
 footer small {
@@ -1561,13 +1606,14 @@ footer small {
 
 
 /* =========================================================
-   23. SCROLL REVEAL
+   28. SCROLL REVEAL
    ========================================================= */
 
 .reveal {
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
 
     transition:
         opacity 0.9s ease,
@@ -1577,7 +1623,8 @@ footer small {
 .reveal.visible {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .delay {
@@ -1586,17 +1633,21 @@ footer small {
 
 
 /* =========================================================
-   24. TABLET
+   29. TABLET
    ========================================================= */
 
 @media (max-width: 1000px) {
 
     .section {
-        padding: 110px 6vw;
+        padding:
+            110px
+            6vw;
     }
 
     .hero {
-        padding: 0 7vw;
+        padding:
+            0
+            7vw;
     }
 
     .split {
@@ -1605,20 +1656,19 @@ footer small {
 
     .cinema {
         padding:
-            100px 5vw;
+            90px
+            4vw;
     }
 
     .cinema-card {
-        max-width: 900px;
+        max-width: 950px;
     }
 
     .cinema-copy {
         padding:
-            65px 50px 75px;
-    }
-
-    .cinema-copy h2 {
-        font-size: 70px;
+            65px
+            45px
+            75px;
     }
 
     .care-grid {
@@ -1628,7 +1678,7 @@ footer small {
 
 
 /* =========================================================
-   25. MOBILE NAVIGATION
+   30. MOBILE NAV
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -1636,14 +1686,15 @@ footer small {
     .nav {
         height: 65px;
 
-        padding: 0 6vw;
+        padding:
+            0
+            6vw;
     }
 
     .nav nav {
         position: absolute;
 
         top: 65px;
-
         left: 0;
         right: 0;
 
@@ -1655,14 +1706,16 @@ footer small {
 
         gap: 20px;
 
-        padding: 25px 6vw;
+        padding:
+            25px
+            6vw;
 
         background:
-            rgba(9, 9, 13, 0.97);
+            rgba(8,9,13,0.98);
 
         border-bottom:
             1px solid
-            var(--line);
+            var(--border);
 
         backdrop-filter: blur(15px);
     }
@@ -1681,19 +1734,9 @@ footer small {
     .hero {
         min-height: 650px;
 
-        padding: 0 7vw;
-    }
-
-    .hero-bg {
-        background:
-            linear-gradient(
-                90deg,
-                #09090dee,
-                #09090d99
-            ),
-            url("images/hero.jpg")
-            center / cover
-            no-repeat;
+        padding:
+            0
+            7vw;
     }
 
     .hero-copy {
@@ -1704,12 +1747,13 @@ footer small {
     /* COMMON */
 
     .section {
-        padding: 95px 7vw;
+        padding:
+            95px
+            7vw;
     }
 
     .section-number {
         top: 30px;
-
         left: 7vw;
     }
 
@@ -1735,12 +1779,15 @@ footer small {
 
 
     /* =====================================================
-       MAIN PHOTO - MOBILE
+       MAIN IMAGE - MOBILE
        ===================================================== */
 
     .cinema {
+        width: 100%;
+
         padding:
-            80px 5vw;
+            70px
+            15px;
     }
 
     .cinema-card {
@@ -1748,11 +1795,13 @@ footer small {
 
         max-width: 100%;
 
+        margin: 0 auto;
+
         display: flex;
 
         flex-direction: column;
 
-        border-radius: 2px;
+        overflow: hidden;
     }
 
     .photo-placeholder {
@@ -1768,15 +1817,15 @@ footer small {
 
         justify-content: center;
 
-        overflow: hidden;
-
         padding: 0;
 
-        background: #08080b;
+        margin: 0;
+
+        overflow: hidden;
     }
 
     .photo-placeholder img {
-        position: relative;
+        display: block;
 
         width: 100%;
 
@@ -1786,22 +1835,9 @@ footer small {
 
         margin: 0 auto;
 
-        display: block;
-
         object-fit: contain;
 
-        object-position: center;
-
-        transform: none;
-    }
-
-    .cinema-card:hover
-    .photo-placeholder img {
-        transform: none;
-
-        filter:
-            saturate(0.98)
-            contrast(1.02);
+        object-position: center center;
     }
 
 
@@ -1810,10 +1846,10 @@ footer small {
     .cinema-copy {
         width: 100%;
 
-        min-height: auto;
-
         padding:
-            55px 30px 65px;
+            55px
+            25px
+            65px;
 
         text-align: center;
     }
@@ -1876,7 +1912,8 @@ footer small {
             1fr 1fr;
 
         grid-template-rows:
-            220px 220px;
+            220px
+            220px;
     }
 
     .gallery-photo.large {
@@ -1905,7 +1942,8 @@ footer small {
 
     .modal-inner {
         padding:
-            65px 25px;
+            65px
+            25px;
     }
 
     .modal h2 {
@@ -1930,7 +1968,7 @@ footer small {
 
 
 /* =========================================================
-   26. SMALL PHONES
+   31. SMALL MOBILE
    ========================================================= */
 
 @media (max-width: 480px) {
@@ -1950,7 +1988,12 @@ footer small {
 
     .cinema {
         padding:
-            60px 15px;
+            55px
+            10px;
+    }
+
+    .cinema-card {
+        width: 100%;
     }
 
     .photo-placeholder {
@@ -1969,6 +2012,8 @@ footer small {
         max-width: 100%;
 
         object-fit: contain;
+
+        object-position: center;
     }
 
 
@@ -1976,7 +2021,9 @@ footer small {
 
     .cinema-copy {
         padding:
-            45px 25px 55px;
+            45px
+            20px
+            55px;
     }
 
     .cinema-copy h2 {
@@ -1990,7 +2037,8 @@ footer small {
 
     .family-card {
         padding:
-            35px 25px;
+            35px
+            25px;
     }
 
 
