@@ -1,38 +1,1762 @@
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#09090d;--panel:#111118;--text:#f4f0ea;--muted:#aaa4a0;--gold:#d6b47a;--rose:#c98791;--line:rgba(255,255,255,.11)}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
-body.no-scroll{overflow:hidden}
-::selection{background:var(--gold);color:#09090d}
-.grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
-.cursor-glow{position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(214,180,122,.07),transparent 65%);transform:translate(-50%,-50%)}
-#loader{position:fixed;inset:0;background:#09090d;z-index:1000;display:grid;place-content:center;text-align:center;transition:opacity .8s,visibility .8s}
-#loader.hide{opacity:0;visibility:hidden}.loader-mark{font:500 38px "Playfair Display";letter-spacing:5px}.loader-mark span,.logo span{color:var(--gold);font-style:normal}.loader-mark+p{color:#777;margin-top:12px;font-size:12px;letter-spacing:2px;text-transform:uppercase}
-.nav{height:80px;position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:linear-gradient(#09090ddd,transparent);backdrop-filter:blur(8px)}
-.logo{color:#fff;text-decoration:none;font:500 20px "Playfair Display";letter-spacing:3px}.logo span{font-family:inherit}
-.nav nav{display:flex;gap:34px}.nav nav a{color:#c8c4c0;text-decoration:none;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;transition:.3s}.nav nav a:hover{color:var(--gold)}
-.menu-btn{display:none;background:none;border:0}
-.hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;padding:0 10vw;overflow:hidden}
-.hero-bg{position:absolute;inset:-5%;background:linear-gradient(90deg,rgba(5,5,8,.94),rgba(5,5,8,.48),rgba(5,5,8,.8)),url("images/hero.jpg") center/cover;filter:saturate(.72);transform:scale(1.04);animation:slowzoom 14s ease-out forwards}
-@keyframes slowzoom{to{transform:scale(1)}}
-.hero-overlay{position:absolute;inset:0;background:radial-gradient(circle at 70% 45%,transparent,rgba(5,5,8,.75) 70%)}
-.hero-content{position:relative;z-index:2;max-width:800px}.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:25px}
-h1,h2{font-family:"Playfair Display",serif;font-weight:400;line-height:.95}h1{font-size:clamp(72px,11vw,170px);letter-spacing:-5px}h1 em,h2 em{color:var(--gold);font-style:italic}
-.hero-copy{font-size:17px;line-height:1.8;color:#d0ccca;margin:35px 0}.gold-btn{display:inline-flex;align-items:center;gap:30px;color:#111;text-decoration:none;background:var(--gold);padding:16px 22px;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;transition:.3s}.gold-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px #d6b47a25}.gold-btn span{font-size:17px}
-.scroll-hint{position:absolute;bottom:30px;left:10vw;font-size:9px;letter-spacing:3px;color:#777;display:flex;align-items:center;gap:15px}.scroll-hint span{height:1px;width:50px;background:#777}
-.section{position:relative;padding:150px 10vw;overflow:hidden}.section-number{position:absolute;top:50px;left:5vw;font-size:10px;color:#5f5a58;letter-spacing:2px}
-.split{max-width:1200px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}.section h2{font-size:clamp(55px,7vw,105px);letter-spacing:-3px}
-.quote{border-left:1px solid var(--gold);padding:25px 0 25px 40px;max-width:500px}.quote-mark{font:80px "Playfair Display";color:var(--gold);line-height:.4}.quote p{font:400 27px/1.45 "Playfair Display";color:#e4dfda;margin:25px 0}.quote small{color:#777}
-.cinema{background:#0d0d13}.cinema-card{max-width:1250px;margin:auto;display:grid;grid-template-columns:1.15fr .85fr;min-height:600px;background:#14141b;border:1px solid var(--line)}.photo-placeholder{min-height:500px;background:linear-gradient(135deg,#17171e,#09090d);display:grid;place-items:center;position:relative;overflow:hidden}.photo-placeholder:before{content:"";position:absolute;width:400px;height:400px;background:radial-gradient(circle,#d6b47a20,transparent 65%)}.photo-placeholder div{text-align:center;z-index:1}.photo-placeholder span{display:block;font-size:11px;letter-spacing:4px;color:var(--gold)}.photo-placeholder small{display:block;color:#666;margin-top:10px}.cinema-copy{padding:70px;align-self:center}.cinema-copy h2{font-size:75px}.cinema-copy>p:last-child{color:#999;line-height:1.8;max-width:380px;margin-top:30px}
-.center-heading{text-align:center;max-width:800px;margin:0 auto 75px}.center-heading h2{font-size:clamp(48px,6vw,85px)}.cards{max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}.moment{background:#0d0d12;padding:40px;min-height:260px;position:relative;transition:.4s}.moment:hover{background:#15151c;transform:translateY(-5px)}.moment b{font-size:10px;color:#5c5957;letter-spacing:2px}.moment span{display:block;font-size:30px;margin:25px 0 15px}.moment h3{font:400 25px "Playfair Display"}.moment p{color:#888;font-size:13px;line-height:1.7;margin-top:10px}
-.care{background:#111117}.care-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:120px}.care-heading h2{font-size:70px}.care-heading>p:last-child{color:#777;margin-top:30px}.care-list{border-top:1px solid var(--line)}.care-item{display:grid;grid-template-columns:45px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--line)}.care-item>span{color:var(--gold);font-size:11px}.care-item h3{font:400 26px "Playfair Display"}.care-item p{color:#888;font-size:13px;line-height:1.7;margin-top:7px}
-.family{background:linear-gradient(135deg,#100e11,#0a0a0d)}.family-hero{text-align:center;max-width:800px;margin:auto}.family-hero h2{font-size:clamp(60px,8vw,110px)}.family-hero>p:last-child{max-width:600px;margin:30px auto;color:#999;line-height:1.8}.family-cards{max-width:1100px;margin:80px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.family-card{border:1px solid var(--line);padding:45px 35px;background:#ffffff03;min-height:300px}.family-card span{color:var(--gold);font-size:10px}.family-card strong{display:block;font-size:9px;letter-spacing:2px;color:#777;margin:25px 0 8px}.family-card h3{font:400 33px "Playfair Display"}.family-card p{color:#888;font-size:13px;line-height:1.8;margin-top:15px}
-.timeline-wrap{max-width:800px;margin:auto;position:relative}.line{position:absolute;left:6px;top:0;bottom:0;width:1px;background:var(--line)}.time-row{position:relative;padding:0 0 75px 55px}.time-dot{position:absolute;left:0;top:3px;width:13px;height:13px;border:1px solid var(--gold);border-radius:50%;background:var(--bg);box-shadow:0 0 0 5px var(--bg)}.time-row small{font-size:9px;color:var(--gold);letter-spacing:2px}.time-row h3{font:400 38px "Playfair Display";margin:10px 0}.time-row p{color:#888;line-height:1.8;font-size:14px;max-width:600px}
-.reasons{background:#111117}.reasons-copy .big{font:400 30px/1.4 "Playfair Display";color:#eee;margin-bottom:25px}.reasons-copy>p:not(.big){color:#888;line-height:1.9;margin-bottom:18px}
-.gallery-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;grid-template-rows:260px 260px;gap:15px}.gallery-photo{background:linear-gradient(135deg,#191820,#0c0c11);display:grid;place-items:center;border:1px solid var(--line);position:relative;overflow:hidden}.gallery-photo:after{content:"";position:absolute;inset:15px;border:1px solid #ffffff08}.gallery-photo span{font-size:10px;letter-spacing:3px;color:#555}.gallery-photo.large{grid-row:span 2}.gallery-photo.wide{grid-column:2}.gallery-note{text-align:center;color:#555;font-size:11px;margin-top:25px}
-.promise{min-height:900px;display:grid;place-items:center;text-align:center}.promise-bg{position:absolute;inset:0;background:radial-gradient(circle at center,#3a292930,transparent 55%)}.promise-content{position:relative;max-width:900px}.promise-content h2{font-size:clamp(55px,7vw,105px)}.letter{max-width:650px;margin:55px auto 0;text-align:left;color:#9c9895;line-height:1.9;font-size:14px}.letter p{margin-bottom:22px}.signature{font-family:"Playfair Display";font-size:23px!important;color:#e5dfd9}.signature strong{color:var(--gold)}.signature span{color:var(--rose);font-size:25px}
-.final{min-height:75vh;display:grid;place-items:center;text-align:center;border-top:1px solid var(--line)}.final-inner{max-width:800px}.heart{font-size:42px;color:var(--rose);display:block;margin-bottom:20px}.final h2{font-size:clamp(65px,8vw,115px)}.final-inner>p:not(.eyebrow){color:#888;line-height:1.8;margin:30px 0}.surprise-btn{background:none;border:1px solid #6c5b46;color:#d6b47a;padding:15px 23px;cursor:pointer;text-transform:uppercase;letter-spacing:1.5px;font-size:10px;transition:.3s}.surprise-btn:hover{background:#d6b47a;color:#111}.surprise-btn span{margin-left:15px}
-.modal{position:fixed;inset:0;background:#050507dd;backdrop-filter:blur(15px);z-index:200;display:grid;place-items:center;opacity:0;visibility:hidden;transition:.4s;padding:20px}.modal.open{opacity:1;visibility:visible}.modal-inner{position:relative;background:#121219;border:1px solid #ffffff15;padding:80px 50px;text-align:center;max-width:650px;width:100%;transform:translateY(20px);transition:.5s}.modal.open .modal-inner{transform:none}.modal h2{font-size:65px}.modal p:not(.eyebrow){font:22px/1.8 "Playfair Display";color:#bbb;margin:35px 0}.modal strong{color:var(--gold);font:20px "Playfair Display"}.close{position:absolute;right:20px;top:15px;background:none;border:0;color:#888;font-size:28px;cursor:pointer}
-footer{border-top:1px solid var(--line);padding:50px 10vw;display:flex;align-items:center;justify-content:space-between;color:#666;font-size:11px}footer small{color:#444}
-.reveal{opacity:0;transform:translateY(35px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}.delay{transition-delay:.18s}
-@media(max-width:800px){.nav{height:65px;padding:0 6vw}.nav nav{display:none;position:absolute;top:65px;left:0;right:0;background:#09090df2;padding:25px 6vw;flex-direction:column;gap:20px}.nav nav.open{display:flex}.menu-btn{display:flex;flex-direction:column;gap:5px}.menu-btn span{display:block;width:22px;height:1px;background:#ccc}.hero{padding:0 7vw;min-height:650px}.hero-bg{background:linear-gradient(90deg,#09090dee,#09090d99),url("images/hero.jpg") center/cover}.hero-copy{font-size:15px}.section{padding:100px 7vw}.section-number{top:35px;left:7vw}.split,.cinema-card,.care-grid{grid-template-columns:1fr;gap:50px}.split{gap:40px}.quote{padding-left:22px}.quote p{font-size:22px}.cinema-copy{padding:45px 30px}.cinema-copy h2,.care-heading h2{font-size:55px}.photo-placeholder{min-height:380px}.cards,.family-cards{grid-template-columns:1fr}.moment{min-height:220px}.care-grid{gap:65px}.family-cards{margin-top:50px}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px}.gallery-photo.large{grid-row:span 1}.gallery-photo.wide{grid-column:span 2}.promise{min-height:800px}.letter{margin-top:40px;font-size:13px}.modal-inner{padding:65px 25px}.modal h2{font-size:48px}.modal p:not(.eyebrow){font-size:18px}footer{flex-direction:column;gap:20px;text-align:center}}
+/* =========================================================
+   OUR TOMORROW
+   Premium Love Story Website
+   Main Stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   01. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --bg: #09090d;
+    --bg-soft: #0d0d13;
+    --panel: #111118;
+    --panel-light: #14141b;
+
+    --text: #f4f0ea;
+    --text-soft: #d0ccca;
+    --muted: #aaa4a0;
+    --muted-dark: #77716e;
+
+    --gold: #d6b47a;
+    --gold-light: #e5c994;
+    --rose: #c98791;
+
+    --line: rgba(255, 255, 255, 0.11);
+
+    --container: 1250px;
+
+    --font-heading: "Playfair Display", serif;
+    --font-body: "DM Sans", sans-serif;
+}
+
+
+/* =========================================================
+   02. RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+::selection {
+    background: var(--gold);
+    color: #09090d;
+}
+
+
+/* =========================================================
+   03. GLOBAL EFFECTS
+   ========================================================= */
+
+.grain {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    opacity: 0.055;
+
+    background-image: url(
+        "data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
+    );
+}
+
+.cursor-glow {
+    position: fixed;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(214, 180, 122, 0.07),
+            transparent 65%
+        );
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   04. LOADER
+   ========================================================= */
+
+#loader {
+    position: fixed;
+    inset: 0;
+
+    background: #09090d;
+
+    z-index: 1000;
+
+    display: grid;
+    place-content: center;
+
+    text-align: center;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+}
+
+#loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-mark {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 500;
+
+    letter-spacing: 5px;
+}
+
+.loader-mark span {
+    color: var(--gold);
+}
+
+.loader-mark + p {
+    color: #777;
+
+    margin-top: 12px;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   05. NAVIGATION
+   ========================================================= */
+
+.nav {
+    height: 80px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 90;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 5vw;
+
+    background:
+        linear-gradient(
+            #09090ddd,
+            transparent
+        );
+
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav nav {
+    display: flex;
+    gap: 34px;
+}
+
+.nav nav a {
+    color: #c8c4c0;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+
+    transition: color 0.3s ease;
+}
+
+.nav nav a:hover {
+    color: var(--gold);
+}
+
+.menu-btn {
+    display: none;
+
+    background: none;
+
+    border: 0;
+
+    cursor: pointer;
+}
+
+.menu-btn span {
+    display: block;
+
+    width: 22px;
+    height: 1px;
+
+    background: #ccc;
+}
+
+
+/* =========================================================
+   06. TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2 {
+    font-family: var(--font-heading);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+}
+
+h1 em,
+h2 em {
+    color: var(--gold);
+
+    font-style: italic;
+}
+
+.eyebrow {
+    margin-bottom: 25px;
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   07. HERO SECTION
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    height: 100vh;
+    min-height: 700px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 10vw;
+
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+
+    inset: -5%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 5, 8, 0.94),
+            rgba(5, 5, 8, 0.48),
+            rgba(5, 5, 8, 0.80)
+        ),
+        url("images/hero.jpg")
+        center / cover
+        no-repeat;
+
+    filter: saturate(0.72);
+
+    transform: scale(1.04);
+
+    animation:
+        slowZoom 14s ease-out forwards;
+}
+
+@keyframes slowZoom {
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 45%,
+            transparent,
+            rgba(5, 5, 8, 0.75) 70%
+        );
+}
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: clamp(
+        72px,
+        11vw,
+        170px
+    );
+
+    letter-spacing: -5px;
+}
+
+.hero-copy {
+    margin: 35px 0;
+
+    color: var(--text-soft);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+}
+
+.gold-btn {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 16px 22px;
+
+    color: #111;
+
+    background: var(--gold);
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition: 0.3s ease;
+}
+
+.gold-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 35px
+        rgba(214, 180, 122, 0.15);
+}
+
+.gold-btn span {
+    font-size: 17px;
+}
+
+.scroll-hint {
+    position: absolute;
+
+    bottom: 30px;
+    left: 10vw;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+.scroll-hint span {
+    width: 50px;
+    height: 1px;
+
+    background: #777;
+}
+
+
+/* =========================================================
+   08. COMMON SECTION
+   ========================================================= */
+
+.section {
+    position: relative;
+
+    padding: 150px 10vw;
+
+    overflow: hidden;
+}
+
+.section-number {
+    position: absolute;
+
+    top: 50px;
+    left: 5vw;
+
+    color: #5f5a58;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.split {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 100px;
+
+    align-items: center;
+}
+
+.section h2 {
+    font-size: clamp(
+        55px,
+        7vw,
+        105px
+    );
+
+    letter-spacing: -3px;
+}
+
+
+/* =========================================================
+   09. INTRO / QUOTE
+   ========================================================= */
+
+.quote {
+    max-width: 500px;
+
+    padding: 25px 0 25px 40px;
+
+    border-left: 1px solid var(--gold);
+}
+
+.quote-mark {
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 80px;
+
+    line-height: 0.4;
+}
+
+.quote p {
+    margin: 25px 0;
+
+    color: #e4dfda;
+
+    font-family: var(--font-heading);
+
+    font-size: 27px;
+
+    line-height: 1.45;
+}
+
+.quote small {
+    color: #777;
+}
+
+
+/* =========================================================
+   10. CINEMA / PHOTO SECTION
+   ========================================================= */
+
+/*
+    THIS IS THE MAIN PHOTO SECTION.
+
+    Your HTML should be:
+
+    <div class="photo-placeholder">
+        <img
+            src="images/couple.jpg"
+            alt="Our favorite memory together"
+        >
+    </div>
+*/
+
+.cinema {
+    background: var(--bg-soft);
+}
+
+.cinema-card {
+    width: 100%;
+    max-width: var(--container);
+
+    min-height: 620px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(360px, 0.85fr);
+
+    background: var(--panel-light);
+
+    border: 1px solid var(--line);
+
+    overflow: hidden;
+}
+
+
+/* -----------------------------------------
+   PHOTO CONTAINER
+   ----------------------------------------- */
+
+.photo-placeholder {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    min-height: 620px;
+
+    overflow: hidden;
+
+    background: #111;
+
+    isolation: isolate;
+}
+
+
+/* -----------------------------------------
+   ACTUAL IMAGE
+   ----------------------------------------- */
+
+.photo-placeholder img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    /*
+        COVER means the image completely fills
+        the left panel without leaving gaps.
+    */
+    object-fit: cover;
+
+    /*
+        Change this if you want to move the
+        image inside the frame.
+
+        center center = normal
+        center top    = show more top
+        center 30%    = slightly higher
+    */
+    object-position: center center;
+
+    /*
+        Slight zoom gives it a premium
+        cinematic photography effect.
+    */
+    transform: scale(1.01);
+
+    transition:
+        transform 1.2s ease,
+        filter 0.8s ease;
+
+    z-index: 1;
+}
+
+
+/* -----------------------------------------
+   CINEMATIC IMAGE OVERLAY
+   ----------------------------------------- */
+
+.photo-placeholder::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.03),
+            rgba(0, 0, 0, 0.08)
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.25)
+        );
+}
+
+
+/* -----------------------------------------
+   IMAGE HOVER
+   ----------------------------------------- */
+
+.cinema-card:hover
+.photo-placeholder img {
+    transform: scale(1.055);
+
+    filter: saturate(1.03);
+}
+
+
+/* -----------------------------------------
+   RIGHT SIDE CONTENT
+   ----------------------------------------- */
+
+.cinema-copy {
+    padding: 70px;
+
+    align-self: center;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+.cinema-copy h2 {
+    font-size: 75px;
+}
+
+.cinema-copy > p:last-child {
+    max-width: 380px;
+
+    margin-top: 30px;
+
+    color: #999;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   11. MOMENTS SECTION
+   ========================================================= */
+
+.center-heading {
+    max-width: 800px;
+
+    margin: 0 auto 75px;
+
+    text-align: center;
+}
+
+.center-heading h2 {
+    font-size: clamp(
+        48px,
+        6vw,
+        85px
+    );
+}
+
+.cards {
+    max-width: var(--container);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: var(--line);
+}
+
+.moment {
+    position: relative;
+
+    min-height: 260px;
+
+    padding: 40px;
+
+    background: #0d0d12;
+
+    transition:
+        background 0.4s ease,
+        transform 0.4s ease;
+}
+
+.moment:hover {
+    background: #15151c;
+
+    transform: translateY(-5px);
+}
+
+.moment b {
+    color: #5c5957;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.moment span {
+    display: block;
+
+    margin: 25px 0 15px;
+
+    font-size: 30px;
+}
+
+.moment h3 {
+    font-family: var(--font-heading);
+
+    font-size: 25px;
+
+    font-weight: 400;
+}
+
+.moment p {
+    margin-top: 10px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   12. CARE SECTION
+   ========================================================= */
+
+.care {
+    background: #111117;
+}
+
+.care-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        0.8fr 1.2fr;
+
+    gap: 120px;
+}
+
+.care-heading h2 {
+    font-size: 70px;
+}
+
+.care-heading > p:last-child {
+    margin-top: 30px;
+
+    color: #777;
+}
+
+.care-list {
+    border-top: 1px solid var(--line);
+}
+
+.care-item {
+    display: grid;
+
+    grid-template-columns: 45px 1fr;
+
+    gap: 20px;
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.care-item > span {
+    color: var(--gold);
+
+    font-size: 11px;
+}
+
+.care-item h3 {
+    font-family: var(--font-heading);
+
+    font-size: 26px;
+
+    font-weight: 400;
+}
+
+.care-item p {
+    margin-top: 7px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   13. FAMILY SECTION
+   ========================================================= */
+
+.family {
+    background:
+        linear-gradient(
+            135deg,
+            #100e11,
+            #0a0a0d
+        );
+}
+
+.family-hero {
+    max-width: 800px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.family-hero h2 {
+    font-size: clamp(
+        60px,
+        8vw,
+        110px
+    );
+}
+
+.family-hero > p:last-child {
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    color: #999;
+
+    line-height: 1.8;
+}
+
+.family-cards {
+    max-width: 1100px;
+
+    margin: 80px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.family-card {
+    min-height: 300px;
+
+    padding: 45px 35px;
+
+    background: #ffffff03;
+
+    border: 1px solid var(--line);
+}
+
+.family-card span {
+    color: var(--gold);
+
+    font-size: 10px;
+}
+
+.family-card strong {
+    display: block;
+
+    margin: 25px 0 8px;
+
+    color: #777;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.family-card h3 {
+    font-family: var(--font-heading);
+
+    font-size: 33px;
+
+    font-weight: 400;
+}
+
+.family-card p {
+    margin-top: 15px;
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   14. TIMELINE
+   ========================================================= */
+
+.timeline-wrap {
+    position: relative;
+
+    max-width: 800px;
+
+    margin: auto;
+}
+
+.line {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 6px;
+
+    width: 1px;
+
+    background: var(--line);
+}
+
+.time-row {
+    position: relative;
+
+    padding:
+        0
+        0
+        75px
+        55px;
+}
+
+.time-dot {
+    position: absolute;
+
+    top: 3px;
+    left: 0;
+
+    width: 13px;
+    height: 13px;
+
+    border:
+        1px solid
+        var(--gold);
+
+    border-radius: 50%;
+
+    background: var(--bg);
+
+    box-shadow:
+        0 0 0 5px
+        var(--bg);
+}
+
+.time-row small {
+    color: var(--gold);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.time-row h3 {
+    margin: 10px 0;
+
+    font-family: var(--font-heading);
+
+    font-size: 38px;
+
+    font-weight: 400;
+}
+
+.time-row p {
+    max-width: 600px;
+
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   15. REASONS SECTION
+   ========================================================= */
+
+.reasons {
+    background: #111117;
+}
+
+.reasons-copy .big {
+    margin-bottom: 25px;
+
+    color: #eee;
+
+    font-family: var(--font-heading);
+
+    font-size: 30px;
+
+    line-height: 1.4;
+}
+
+.reasons-copy > p:not(.big) {
+    margin-bottom: 18px;
+
+    color: #888;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   16. GALLERY
+   ========================================================= */
+
+.gallery-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        1.3fr 0.7fr;
+
+    grid-template-rows:
+        260px 260px;
+
+    gap: 15px;
+}
+
+.gallery-photo {
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #191820,
+            #0c0c11
+        );
+
+    border: 1px solid var(--line);
+}
+
+.gallery-photo::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 15px;
+
+    border: 1px solid #ffffff08;
+
+    pointer-events: none;
+}
+
+.gallery-photo span {
+    color: #555;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.gallery-photo.large {
+    grid-row: span 2;
+}
+
+.gallery-photo.wide {
+    grid-column: 2;
+}
+
+.gallery-note {
+    margin-top: 25px;
+
+    color: #555;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   17. PROMISE SECTION
+   ========================================================= */
+
+.promise {
+    position: relative;
+
+    min-height: 900px;
+
+    display: grid;
+
+    place-items: center;
+
+    text-align: center;
+}
+
+.promise-bg {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3a292930,
+            transparent 55%
+        );
+}
+
+.promise-content {
+    position: relative;
+
+    max-width: 900px;
+}
+
+.promise-content h2 {
+    font-size: clamp(
+        55px,
+        7vw,
+        105px
+    );
+}
+
+.letter {
+    max-width: 650px;
+
+    margin: 55px auto 0;
+
+    color: #9c9895;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+
+    text-align: left;
+}
+
+.letter p {
+    margin-bottom: 22px;
+}
+
+.signature {
+    color: #e5dfd9;
+
+    font-family: var(--font-heading);
+
+    font-size: 23px !important;
+}
+
+.signature strong {
+    color: var(--gold);
+}
+
+.signature span {
+    color: var(--rose);
+
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   18. FINAL SECTION
+   ========================================================= */
+
+.final {
+    min-height: 75vh;
+
+    display: grid;
+
+    place-items: center;
+
+    text-align: center;
+
+    border-top: 1px solid var(--line);
+}
+
+.final-inner {
+    max-width: 800px;
+}
+
+.heart {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: var(--rose);
+
+    font-size: 42px;
+}
+
+.final h2 {
+    font-size: clamp(
+        65px,
+        8vw,
+        115px
+    );
+}
+
+.final-inner > p:not(.eyebrow) {
+    margin: 30px 0;
+
+    color: #888;
+
+    line-height: 1.8;
+}
+
+.surprise-btn {
+    padding: 15px 23px;
+
+    color: var(--gold);
+
+    background: transparent;
+
+    border: 1px solid #6c5b46;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    transition: 0.3s ease;
+}
+
+.surprise-btn:hover {
+    color: #111;
+
+    background: var(--gold);
+}
+
+.surprise-btn span {
+    margin-left: 15px;
+}
+
+
+/* =========================================================
+   19. MODAL
+   ========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+
+    background: #050507dd;
+
+    backdrop-filter: blur(15px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
+
+.modal.open {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+.modal-inner {
+    position: relative;
+
+    width: 100%;
+    max-width: 650px;
+
+    padding: 80px 50px;
+
+    background: #121219;
+
+    border: 1px solid #ffffff15;
+
+    text-align: center;
+
+    transform: translateY(20px);
+
+    transition: transform 0.5s ease;
+}
+
+.modal.open .modal-inner {
+    transform: translateY(0);
+}
+
+.modal h2 {
+    font-size: 65px;
+}
+
+.modal p:not(.eyebrow) {
+    margin: 35px 0;
+
+    color: #bbb;
+
+    font-family: var(--font-heading);
+
+    font-size: 22px;
+
+    line-height: 1.8;
+}
+
+.modal strong {
+    color: var(--gold);
+
+    font-family: var(--font-heading);
+
+    font-size: 20px;
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    color: #888;
+
+    background: none;
+
+    border: 0;
+
+    cursor: pointer;
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   20. FOOTER
+   ========================================================= */
+
+footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 50px 10vw;
+
+    color: #666;
+
+    font-size: 11px;
+
+    border-top: 1px solid var(--line);
+}
+
+footer small {
+    color: #444;
+}
+
+
+/* =========================================================
+   21. SCROLL REVEAL ANIMATION
+   ========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.delay {
+    transition-delay: 0.18s;
+}
+
+
+/* =========================================================
+   22. TABLET / MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    /* ---------- NAV ---------- */
+
+    .nav {
+        height: 65px;
+
+        padding: 0 6vw;
+    }
+
+    .nav nav {
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        gap: 20px;
+
+        padding: 25px 6vw;
+
+        background: #09090df2;
+    }
+
+    .nav nav.open {
+        display: flex;
+    }
+
+    .menu-btn {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+        min-height: 650px;
+
+        padding: 0 7vw;
+    }
+
+    .hero-bg {
+        background:
+            linear-gradient(
+                90deg,
+                #09090dee,
+                #09090d99
+            ),
+            url("images/hero.jpg")
+            center / cover
+            no-repeat;
+    }
+
+    .hero-copy {
+        font-size: 15px;
+    }
+
+
+    /* ---------- COMMON ---------- */
+
+    .section {
+        padding: 100px 7vw;
+    }
+
+    .section-number {
+        top: 35px;
+
+        left: 7vw;
+    }
+
+
+    /* ---------- SPLIT ---------- */
+
+    .split {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    /* ---------- QUOTE ---------- */
+
+    .quote {
+        padding-left: 22px;
+    }
+
+    .quote p {
+        font-size: 22px;
+    }
+
+
+    /* =====================================================
+       MOBILE CINEMA PHOTO
+       ===================================================== */
+
+    .cinema-card {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+        min-height: auto;
+    }
+
+    .photo-placeholder {
+        width: 100%;
+
+        /*
+            Mobile image height.
+            Increase this if you want a taller photo.
+        */
+        height: 520px;
+
+        min-height: 520px;
+    }
+
+    .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        /*
+            Change to center top if your
+            important subject is near the top.
+        */
+        object-position: center center;
+    }
+
+    .cinema-copy {
+        padding: 50px 30px;
+    }
+
+    .cinema-copy h2 {
+        font-size: 55px;
+    }
+
+
+    /* ---------- MOMENTS ---------- */
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .moment {
+        min-height: 220px;
+    }
+
+
+    /* ---------- CARE ---------- */
+
+    .care-grid {
+        grid-template-columns: 1fr;
+
+        gap: 65px;
+    }
+
+    .care-heading h2 {
+        font-size: 55px;
+    }
+
+
+    /* ---------- FAMILY ---------- */
+
+    .family-cards {
+        grid-template-columns: 1fr;
+
+        margin-top: 50px;
+    }
+
+
+    /* ---------- TIMELINE ---------- */
+
+    .time-row h3 {
+        font-size: 32px;
+    }
+
+
+    /* ---------- GALLERY ---------- */
+
+    .gallery-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        grid-template-rows:
+            220px 220px;
+    }
+
+    .gallery-photo.large {
+        grid-row: span 1;
+    }
+
+    .gallery-photo.wide {
+        grid-column: span 2;
+    }
+
+
+    /* ---------- PROMISE ---------- */
+
+    .promise {
+        min-height: 800px;
+    }
+
+    .letter {
+        margin-top: 40px;
+
+        font-size: 13px;
+    }
+
+
+    /* ---------- MODAL ---------- */
+
+    .modal-inner {
+        padding: 65px 25px;
+    }
+
+    .modal h2 {
+        font-size: 48px;
+    }
+
+    .modal p:not(.eyebrow) {
+        font-size: 18px;
+    }
+
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+        flex-direction: column;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   23. SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 68px;
+
+        letter-spacing: -3px;
+    }
+
+    .section h2 {
+        font-size: 50px;
+    }
+
+    .cinema-copy h2 {
+        font-size: 48px;
+    }
+
+    .photo-placeholder {
+        height: 430px;
+
+        min-height: 430px;
+    }
+
+    .photo-placeholder img {
+        object-position: center center;
+    }
+
+    .family-card {
+        padding: 35px 25px;
+    }
+
+    .time-row {
+        padding-left: 40px;
+    }
+
+    .modal h2 {
+        font-size: 42px;
+    }
+}
