@@ -531,22 +531,7 @@ h2 em {
 }
 
 
-/* =========================================================
-   10. CINEMA / PHOTO SECTION
-   ========================================================= */
 
-/*
-    THIS IS THE MAIN PHOTO SECTION.
-
-    Your HTML should be:
-
-    <div class="photo-placeholder">
-        <img
-            src="images/couple.jpg"
-            alt="Our favorite memory together"
-        >
-    </div>
-*/
 
 .cinema {
     background: var(--bg-soft);
@@ -1084,81 +1069,109 @@ h2 em {
 }
 
 
-/* =========================================================
-   16. GALLERY
-   ========================================================= */
+/* ================================
+   OUR MEMORIES - FULL IMAGE
+================================ */
 
-.gallery-grid {
-    max-width: 1100px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        1.3fr 0.7fr;
-
-    grid-template-rows:
-        260px 260px;
-
-    gap: 15px;
+.moments {
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 0 0;
+    margin: 0;
+    background: #08090d;
 }
 
-.gallery-photo {
-    position: relative;
-
-    display: grid;
-
-    place-items: center;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            #191820,
-            #0c0c11
-        );
-
-    border: 1px solid var(--line);
-}
-
-.gallery-photo::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 15px;
-
-    border: 1px solid #ffffff08;
-
-    pointer-events: none;
-}
-
-.gallery-photo span {
-    color: #555;
-
-    font-size: 10px;
-
-    letter-spacing: 3px;
-}
-
-.gallery-photo.large {
-    grid-row: span 2;
-}
-
-.gallery-photo.wide {
-    grid-column: 2;
-}
-
-.gallery-note {
-    margin-top: 25px;
-
-    color: #555;
-
-    font-size: 11px;
-
+.moments .section-head {
+    padding: 0 5vw;
     text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Image container fills remaining screen */
+.moments .photo-placeholder {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 300px);
+    min-height: 500px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #08090d;
+}
+
+/* FULL WIDTH + FULL HEIGHT */
+.moments .photo-placeholder img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+
+    /* This makes the image fill the whole area */
+    object-fit: cover;
+    object-position: center center;
+
+    border: none;
+    outline: none;
+    transform: none;
+
+    filter: saturate(1.05) contrast(1.03);
+}
+
+/* Remove old placeholder */
+.moments .photo-placeholder > div {
+    display: none !important;
+}
+
+.moments .photo-placeholder::before,
+.moments .photo-placeholder::after {
+    display: none !important;
+    content: none !important;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .moments {
+        min-height: 100vh;
+        padding: 90px 0 0;
+    }
+
+    .moments .section-head {
+        padding: 0 25px;
+        margin-bottom: 35px;
+    }
+
+    .moments .photo-placeholder {
+        width: 100%;
+        height: calc(100vh - 270px);
+        min-height: 550px;
+    }
+
+    .moments .photo-placeholder img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+
+/* Small phones */
+@media (max-width: 400px) {
+
+    .moments .photo-placeholder {
+        height: calc(100vh - 250px);
+        min-height: 500px;
+    }
 }
 
 
